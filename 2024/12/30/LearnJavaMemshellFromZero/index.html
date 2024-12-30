@@ -33,7 +33,15 @@
   <link href="/favicon.ico" rel="icon">
   <link rel="alternate" href="/atom.xml" title="W01fh4cker&#39;s blog" type="application/atom+xml">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+  <link href="https://fonts.lug.ustc.edu.cn/css?family=Lato|Rubik" rel="stylesheet">
+  <script src="/js/pangu-407.min.js"></script>
 <meta name="generator" content="Hexo 7.3.0"></head>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    pangu.autoSpacingPage();
+  });
+</script>
 
 
 <body>
@@ -49,6 +57,14 @@
   </div>
   <nav class="site-navigation">
     <ul>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+        <li><a href="/categories">Categories</a></li>
+      
+        <li><a href="/about">About</a></li>
+      
+        <li><a href="/atom.xml">RSS</a></li>
       
     </ul>
   </nav>
@@ -79,6 +95,37 @@
   <div class="article-content">
     <div class="entry">
       
+        
+
+<script type="text/javascript">
+    function convertRemToPixels(rem) {    
+        return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    }
+    window.onscroll = function() {
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop > convertRemToPixels(40)) {
+            document.getElementsByClassName('toc-article')[0].style.visibility = 'visible';
+        } else {
+            document.getElementsByClassName('toc-article')[0].style.visibility = 'hidden';
+        }
+    }
+</script>
+
+
+<div id="toc" class="toc-article">
+      <div class="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-text">一、前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">二、前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-Servlet%E5%AE%B9%E5%99%A8%E4%B8%8EEngine%E3%80%81Host%E3%80%81Context%E5%92%8CWrapper"><span class="toc-text">2.1 Servlet容器与Engine、Host、Context和Wrapper</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84servlet"><span class="toc-text">2.2 编写一个简单的servlet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E4%BB%8E%E4%BB%A3%E7%A0%81%E5%B1%82%E9%9D%A2%E7%9C%8Bservlet%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E8%A3%85%E8%BD%BD%E6%B5%81%E7%A8%8B"><span class="toc-text">2.3 从代码层面看servlet初始化与装载流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-servlet%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-text">2.3.1 servlet初始化流程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-servlet%E8%A3%85%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-text">2.3.2 servlet装载流程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-Filter%E5%AE%B9%E5%99%A8%E4%B8%8EFilterDefs%E3%80%81FilterConfigs%E3%80%81FilterMaps%E3%80%81FilterChain"><span class="toc-text">2.4 Filter容器与FilterDefs、FilterConfigs、FilterMaps、FilterChain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Filter"><span class="toc-text">2.5 编写一个简单的Filter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-%E4%BB%8E%E4%BB%A3%E7%A0%81%E5%B1%82%E9%9D%A2%E5%88%86%E6%9E%90Filter%E8%BF%90%E8%A1%8C%E7%9A%84%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="toc-text">2.6 从代码层面分析Filter运行的整体流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-Listener%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="toc-text">2.7 Listener简单介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Listener%EF%BC%88ServletRequestListener%EF%BC%89"><span class="toc-text">2.8 编写一个简单的Listener（ServletRequestListener）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-9-%E4%BB%8E%E4%BB%A3%E7%A0%81%E5%B1%82%E9%9D%A2%E5%88%86%E6%9E%90Listener%E8%BF%90%E8%A1%8C%E7%9A%84%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="toc-text">2.9 从代码层面分析Listener运行的整体流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-10-%E7%AE%80%E5%8D%95%E7%9A%84spring%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA"><span class="toc-text">2.10 简单的spring项目搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-1-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Spring-Controller"><span class="toc-text">2.10.1 编写一个简单的Spring Controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-2-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Spring-Interceptor"><span class="toc-text">2.10.2 编写一个简单的Spring Interceptor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-10-3-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Spring-WebFlux%E7%9A%84Demo%EF%BC%88%E5%9F%BA%E4%BA%8ENetty%EF%BC%89"><span class="toc-text">2.10.3 编写一个简单的Spring WebFlux的Demo（基于Netty）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-11-Spring-MVC%E4%BB%8B%E7%BB%8D"><span class="toc-text">2.11 Spring MVC介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-1-Spring-MVC%E4%B9%9D%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="toc-text">2.11.1 Spring MVC九大组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-11-2-%E7%AE%80%E5%8D%95%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">2.11.2 简单的源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-2-1-%E4%B9%9D%E5%A4%A7%E7%BB%84%E4%BB%B6%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">2.11.2.1 九大组件的初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-2-2-url%E5%92%8CController%E7%9A%84%E5%85%B3%E7%B3%BB%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="toc-text">2.11.2.2 url和Controller的关系的建立</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-11-2-3-Spring-Interceptor%E5%BC%95%E5%85%A5%E4%B8%8E%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-text">2.11.2.3 Spring Interceptor引入与执行流程分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-12-Spring-WebFlux%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BB%A3%E7%A0%81%E8%B0%83%E8%AF%95%E5%88%86%E6%9E%90"><span class="toc-text">2.12 Spring WebFlux介绍与代码调试分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-1-%E4%BB%80%E4%B9%88%E6%98%AFMono%EF%BC%9F"><span class="toc-text">2.12.1 什么是Mono？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-2-%E4%BB%80%E4%B9%88%E6%98%AFFlux%EF%BC%9F"><span class="toc-text">2.12.2 什么是Flux？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-3-Spring-WebFlux%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-text">2.12.3 Spring WebFlux启动过程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-4-Spring-WebFlux%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-text">2.12.4 Spring WebFlux请求处理过程分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-12-5-Spring-WebFlux%E8%BF%87%E6%BB%A4%E5%99%A8WebFilter%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-text">2.12.5 Spring WebFlux过滤器WebFilter运行过程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-13-Tomcat-Valve%E4%BB%8B%E7%BB%8D%E4%B8%8E%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="toc-text">2.13 Tomcat Valve介绍与运行过程分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-1-Valve%E4%B8%8EPipeline"><span class="toc-text">2.13.1 Valve与Pipeline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-2-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95Tomcat-Valve%E7%9A%84demo"><span class="toc-text">2.13.2 编写一个简单Tomcat Valve的demo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-13-3-Tomcat-Valve%E6%89%93%E5%85%A5%E5%86%85%E5%AD%98%E9%A9%AC%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="toc-text">2.13.3 Tomcat Valve打入内存马思路分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-14-Tomcat-Upgrade%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%89%93%E5%85%A5%E5%86%85%E5%AD%98%E9%A9%AC%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="toc-text">2.14 Tomcat Upgrade介绍与打入内存马思路分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-1-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Tomcat-Upgrade%E7%9A%84demo"><span class="toc-text">2.14.1 编写一个简单的Tomcat Upgrade的demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-14-1-1-%E5%88%A9%E7%94%A8SpringBoot%E6%90%AD%E5%BB%BA"><span class="toc-text">2.14.1.1 利用SpringBoot搭建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-14-1-2-%E5%88%A9%E7%94%A8Tomcat%E6%90%AD%E5%BB%BA"><span class="toc-text">2.14.1.2 利用Tomcat搭建</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-14-2-Tomcat-Upgrade%E5%86%85%E5%AD%98%E9%A9%AC%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81%E8%B0%83%E8%AF%95%E5%88%86%E6%9E%90"><span class="toc-text">2.14.2 Tomcat Upgrade内存马介绍与相关代码调试分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-15-Tomcat-Executor%E5%86%85%E5%AD%98%E9%A9%AC%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%89%93%E5%85%A5%E5%86%85%E5%AD%98%E9%A9%AC%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="toc-text">2.15 Tomcat Executor内存马介绍与打入内存马思路分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-1"><span class="toc-text">2.15.1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-15-2-Tomcat-Executor%E5%86%85%E5%AD%98%E9%A9%AC%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BB%A3%E7%A0%81%E8%B0%83%E8%AF%95%E5%88%86%E6%9E%90"><span class="toc-text">2.15.2 Tomcat Executor内存马介绍与代码调试分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-15-2-1-Endpoint%E4%BA%94%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="toc-text">2.15.2.1 Endpoint五大组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-15-2-2-Endpoint%E5%88%86%E7%B1%BB"><span class="toc-text">2.15.2.2 Endpoint分类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-15-2-3-Executor%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">2.15.2.3 Executor相关代码分析</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BC%A0%E7%BB%9FWeb%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">三、传统Web型内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Servlet%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">3.1 Servlet内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E7%AE%80%E5%8D%95%E7%9A%84servlet%E5%86%85%E5%AD%98%E9%A9%ACdemo%E7%BC%96%E5%86%99"><span class="toc-text">3.1.1 简单的servlet内存马demo编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-servlet%E5%86%85%E5%AD%98%E9%A9%ACdemo%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">3.1.2 servlet内存马demo代码分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-%E5%85%B3%E4%BA%8EStandardContext%E3%80%81ApplicationContext%E3%80%81ServletContext%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">3.1.3 关于StandardContext、ApplicationContext、ServletContext的理解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-Filter%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">3.2 Filter内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%E7%AE%80%E5%8D%95%E7%9A%84filter%E5%86%85%E5%AD%98%E9%A9%ACdemo%E7%BC%96%E5%86%99"><span class="toc-text">3.2.1 简单的filter内存马demo编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-servlet%E5%86%85%E5%AD%98%E9%A9%ACdemo%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">3.2.2 servlet内存马demo代码分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-tomcat6%E4%B8%8Bfilter%E5%86%85%E5%AD%98%E9%A9%AC%E7%9A%84%E7%BC%96%E5%86%99"><span class="toc-text">3.2.3 tomcat6下filter内存马的编写</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Listener%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">3.3 Listener内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-%E7%AE%80%E5%8D%95%E7%9A%84Listener%E5%86%85%E5%AD%98%E9%A9%ACdemo%E7%BC%96%E5%86%99"><span class="toc-text">3.3.1 简单的Listener内存马demo编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-Listener%E5%86%85%E5%AD%98%E9%A9%ACdemo%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">3.3.2 Listener内存马demo代码分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Spring-MVC%E6%A1%86%E6%9E%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">四、Spring MVC框架型内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Spring-Controller%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">4.1 Spring Controller型内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-%E7%AE%80%E5%8D%95%E7%9A%84Spring-Controller%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%ACdemo%E7%BC%96%E5%86%99"><span class="toc-text">4.1.1 简单的Spring Controller型内存马demo编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-Spring-Controller%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%ACdemo%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">4.1.2 Spring Controller型内存马demo代码分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-Spring-Interceptor%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">4.2 Spring Interceptor型内存马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-Spring-WebFlux%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">4.3 Spring WebFlux内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-%E7%AE%80%E5%8D%95%E7%9A%84Spring-WebFlux%E5%86%85%E5%AD%98%E9%A9%ACdemo%E7%BC%96%E5%86%99"><span class="toc-text">4.3.1 简单的Spring WebFlux内存马demo编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-Spring-WebFlux%E5%86%85%E5%AD%98%E9%A9%ACdemo%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-text">4.3.2 Spring WebFlux内存马demo代码分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">五、中间件型内存马</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-Tomcat-Valve%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">5.1 Tomcat Valve型内存马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-Tomcat-Upgrade%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">5.2 Tomcat Upgrade内存马</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-Tomcat-Executor%E5%86%85%E5%AD%98%E9%A9%AC"><span class="toc-text">5.3 Tomcat Executor内存马</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%87%B4%E8%B0%A2"><span class="toc-text">六、致谢</span></a></li></ol>
+      </div>
+</div>
+<style>
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+
+
         <p><img src="https://socialify.git.ci/W01fh4cker/LearnJavaMemshellFromZero/image?description=1&descriptionEditable=%E3%80%90%E5%8E%9F%E5%88%9B%E3%80%91%E5%AE%8C%E5%85%A8%E9%9B%B6%E5%9F%BA%E7%A1%80%E4%BB%8E0%E5%88%B01%E6%8E%8C%E6%8F%A1Java%E5%86%85%E5%AD%98%E9%A9%AC&forks=1&issues=1&language=1&logo=https://s2.loli.net/2022/06/25/gUAh2V5CiD96y8G.jpg&owner=1&pattern=Brick%20Wall&pulls=1&stargazers=1"> </p>
 <span id="more"></span>
 
@@ -1422,8 +1469,29 @@
 
 
 
+	<section id="comment" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
 
-
+	<script type="text/javascript">
+	var disqus_shortname = 'kidhaibara';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
 
 
 
@@ -1432,8 +1500,8 @@
 
     <footer class="site-footer">
   <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    Deployed by <a href="https://github.com/kaedea/notion-down" target="_blank">notion-down</a> and
+    Theme by <a href="https://github.com/kaedea/hexo-theme-hacker" target="_blank">hexo-theme-hacker</a>
     </br>
     
     &copy; 2024 W01fh4cker
@@ -1441,7 +1509,17 @@
   </p>
 </footer>
     
-    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'G-J38N5N288S', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
   </div>
 </div>
 </body>

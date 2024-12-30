@@ -1,8 +1,8 @@
 article .categories-cloud {
   width: 100%;
-  margin: 8rem 0;
+  margin: 6rem 0;
   text-align: center;
-  line-height: 2rem;
+  line-height: 3rem;
 }
 article .categories-cloud > spannot(last-child) {
   margin-right: 3rem;
@@ -37,7 +37,7 @@ article .categories-cloud a {
 }
 article .archive-categories a:hover,
 article .categories-cloud a:hover {
-  color: #f03838;
+  color: #9f353a;
 }
 article .archive-categories i,
 article .categories-cloud i {

@@ -3,33 +3,34 @@ header {
 }
 header .site-branding {
   text-align: center;
-  margin-bottom: 2rem;
-  font-family: "Open Sans", arial, sans-serif;
+  margin-bottom: 3rem;
+  font-family: "Rubik", "Lato", "PingFang SC", "Source Han Sans GB", "Noto Sans", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 header .site-branding .site-title {
   margin: 0;
   font-size: 1.4rem;
+  text-transform: none;
 }
 header .site-branding .site-title a {
   display: inline-block;
   color: #fff;
   font-weight: bolder;
-  background-color: #f03838;
-  line-height: 3rem;
-  height: 3rem;
-  padding: 0 1rem;
+  background-color: #9f353a;
+  line-height: 5rem;
+  height: 5rem;
+  padding: 0 5rem;
   -webkit-transition: padding 0.3s ease-out;
   transition: padding 0.3s ease-out;
 }
 header .site-branding .site-title a:hover {
-  padding: 0 1.5rem;
+  padding: 0 6rem;
 }
 header .site-branding .site-description {
   color: #9e9e9e;
   font-size: 1.3rem;
-  margin: 1rem 0 0;
+  margin: 2rem 0 0;
 }
 header .site-navigation {
   text-align: center;
@@ -46,7 +47,7 @@ header .site-navigation ul li {
 }
 header .site-navigation ul li a {
   display: block;
-  color: #f03838;
+  color: #9f353a;
   font-size: 1.6rem;
   line-height: 2rem;
   padding: 0 1rem;

@@ -7,7 +7,8 @@ article.archive {
   margin: 2em auto;
 }
 .archive-post .archive-title {
-  font-size: 2.8em;
+  font-size: 2rem;
+  font-weight: 500;
   line-height: 1;
   position: relative;
   color: #212121;
@@ -39,22 +40,5 @@ article.archive {
   content: '#';
 }
 .archive-post time a:hover {
-  color: #f03838;
-}
-@media (prefers-color-scheme: dark) {
-  .archive-post .archive-title {
-    color: #f6f2f5;
-  }
-  .archive-post .archive-title a {
-    color: #fff;
-  }
-  .archive-post .archive-title a:hover {
-    color: #f6f2f5;
-  }
-  .archive-post time a {
-    color: #8e8e93;
-  }
-  .archive-post time a:hover {
-    color: #f03838;
-  }
+  color: #9f353a;
 }

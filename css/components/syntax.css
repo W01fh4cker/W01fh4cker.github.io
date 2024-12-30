@@ -150,34 +150,3 @@ pre .clojure .title {
 pre .deletion {
   color: #dc322f;
 }
-@media (prefers-color-scheme: dark) {
-  .entry .gist {
-    background: #222;
-    border: 1px solid #000;
-    text-shadow: 0 0 1px #000;
-    color: #fff;
-  }
-  .entry .gist .gist-file .gist-meta {
-    text-shadow: 0 0 1px #000;
-  }
-  figure.highlight {
-    background: #222;
-    text-shadow: 0 0 1px #000;
-  }
-  figure.highlight figcaption {
-    text-shadow: 0 0 1px #000;
-  }
-  figure.highlight .code {
-    border-left: 1px solid #000;
-    color: #fff;
-  }
-  pre .comment,
-  pre .template_comment,
-  pre .diff .header,
-  pre .doctype,
-  pre .pi,
-  pre .lisp .string,
-  pre .javadoc {
-    color: #586e75;
-  }
-}
