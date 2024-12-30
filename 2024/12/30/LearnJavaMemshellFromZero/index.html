@@ -1,425 +1,85 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-    
+  <meta charset="utf-8">
+  
+  <title>完全零基础从0到1掌握Java内存马 | W01fh4cker&#39;s blog</title>
 
-    
+  
+  <meta name="author" content="W01fh4cker">
+  
 
-    
+  
+  <meta name="description" content="Doubt is the key to knowledge.">
+  
 
+  
+  
+  <meta name="keywords" content="Java,Memshell">
+  
 
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-    <meta charset="utf-8">
-    
-    
-    
-    
-    <title>完全零基础从0到1掌握Java内存马 | W01fh4cker&#39;s blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#3F51B5">
-    
-    
-    <meta name="keywords" content="Java,Memshell">
-    <meta name="description" content="本文目录：  一、前言 二、前置知识 2.1 Servlet容器与Engine、Host、Context和Wrapper 2.2 编写一个简单的servlet 2.3 从代码层面看s">
-<meta property="og:type" content="article">
-<meta property="og:title" content="完全零基础从0到1掌握Java内存马">
-<meta property="og:url" content="https://w01fh4cker.github.io/2024/12/30/LearnJavaMemshellFromZero/index.html">
-<meta property="og:site_name" content="W01fh4cker&#39;s blog">
-<meta property="og:description" content="本文目录：  一、前言 二、前置知识 2.1 Servlet容器与Engine、Host、Context和Wrapper 2.2 编写一个简单的servlet 2.3 从代码层面看s">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://socialify.git.ci/W01fh4cker/LearnJavaMemshellFromZero/image?description=1&descriptionEditable=%E3%80%90%E5%8E%9F%E5%88%9B%E3%80%91%E5%AE%8C%E5%85%A8%E9%9B%B6%E5%9F%BA%E7%A1%80%E4%BB%8E0%E5%88%B01%E6%8E%8C%E6%8F%A1Java%E5%86%85%E5%AD%98%E9%A9%AC&forks=1&issues=1&language=1&logo=https%3A%2F%2Fs2.loli.net%2F2022%2F06%2F25%2FgUAh2V5CiD96y8G.jpg&owner=1&pattern=Brick%20Wall&pulls=1&stargazers=1">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/20240112165508.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/20240112165824.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240112174417723.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240112174451460.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240112174520045.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240112174543728.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240112174604960.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240112174718456.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240112174740574.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240112174840311.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240112175314298.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240112175906956.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240112181600664.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240112181649265.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240115162053776.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240115162215565.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240115162319884.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240115162405771.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240115184354717.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240115193750678.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240115194704999.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/filter-demo.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240116155323191.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240116180329213.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117003245011.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117004652307.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117004728760.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117005026102.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117005923310.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117010603894.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117131207868.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117131938707.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117132121464.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117132257971.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117135001440.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117135022708.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/tomcat.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117193153492.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117193334272.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117193516785.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117213700704.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117223551872.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117225625995.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117225704881.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118010240710.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118010435462.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118010538774.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118011103790.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118011631123.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240119205649551.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240121181613825.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240121182533113.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240121182911474.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240121183100943.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240121135125819.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/W01fh4cker/blog_image@main/customers_stream.gif">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/springmvc2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118153801770.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118153925178.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118154412364.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118154436747.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118155901114.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118160618786.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118160730953.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118170255776.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118172033745.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118174426118.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118174523396.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118174955839.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118175247104.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118175806150.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118180208640.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118180258066.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118191019570.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118191122592.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118191924946.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118192146352.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118192734772.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118193938936.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118194251185.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118195411713.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118195804561.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118195850878.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118200254342.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118201648822.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240119210645412.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240119211041073.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240119211454480.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240119213144754.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240119213521627.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240119214714153.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240119220340092.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240119223022260.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240119223829102.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122151538700.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122151616672.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122152201947.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122152757458.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122153321207.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122153436756.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122154347190.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122154415854.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122154457308.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122154526246.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122154705098.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122154751318.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122155504128.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122155752526.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122172421426.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122174153904.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122174401684.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122174441696.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122174628586.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122174728904.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122174837382.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122180726791.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122180840172.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122180857277.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122181045819.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122181305946.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122181456742.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122181729409.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122181751790.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122181838844.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122182528529.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122182700152.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122182843455.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122183119082.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122205005835.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122210839343.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122210930120.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122213235191.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122214012047.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122215515467.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122222157225.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122222804578.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122222845434.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122223953217.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240122234829435.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240123000521320.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240123000839479.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240123001430128.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240123001241437.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240123001306237.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240123002322377.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240123002406757.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240123002524030.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240123002714255.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240123002806521.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240123002927429.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240124143107182.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240125211900082.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240125220915532.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240126131433346.png">
-<meta property="og:image" content="c:\Users\test\AppData\Roaming\Typora\typora-user-images\image-20240126131914865.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240126132330870.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240126133115205.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240126133242721.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240126133330601.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240126133836697.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240126134339217.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240126145032760.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240126145528943.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240129171852854.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240129184504826.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240129184753374.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130140509002.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130153634378.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130153939854.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130154036757.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130154855309.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130154950328.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130155044025.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130155119909.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130155445230.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130155825670.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240131011203184.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240131151112722.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/20200725210507.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130233028436.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130233124074.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130233206768.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130233758378.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130234010670.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130234324083.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130234424354.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130234624306.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130234945666.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240131143446951.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240131151457146.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240131151614135.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240131151700530.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202165507597.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/W01fh4cker/blog_image@main/NioEndPoint.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240131231807324.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240131232445734.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202145324525.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202145530939.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202145641729.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202145839900.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202145913789.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202165813229.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202165719046.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202170116366.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202170622846.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202170930400.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202171007974.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202171042514.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240116000634170.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240116001219456.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240116001239119.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240116141041681.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240116141210781.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240116143224121.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117144501712.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117145703582.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117232349151.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240117232401259.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118213242404.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240118213252847.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240126191718261.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130181221187.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130164016715.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130164029228.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130164109133.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240130164219944.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240131162725549.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240131164918339.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202183738506.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202184234403.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202193456383.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202193525085.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202194338906.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/W01fh4cker/blog_image/main/image/image-20240202194418057.png">
-<meta property="article:published_time" content="2024-12-30T06:04:53.000Z">
-<meta property="article:modified_time" content="2024-12-30T06:09:18.942Z">
-<meta property="article:author" content="W01fh4cker">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="Memshell">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://socialify.git.ci/W01fh4cker/LearnJavaMemshellFromZero/image?description=1&descriptionEditable=%E3%80%90%E5%8E%9F%E5%88%9B%E3%80%91%E5%AE%8C%E5%85%A8%E9%9B%B6%E5%9F%BA%E7%A1%80%E4%BB%8E0%E5%88%B01%E6%8E%8C%E6%8F%A1Java%E5%86%85%E5%AD%98%E9%A9%AC&forks=1&issues=1&language=1&logo=https%3A%2F%2Fs2.loli.net%2F2022%2F06%2F25%2FgUAh2V5CiD96y8G.jpg&owner=1&pattern=Brick%20Wall&pulls=1&stargazers=1">
-    
-        <link rel="alternate" type="application/atom+xml" title="W01fh4cker&#39;s blog" href="/atom.xml">
-    
-    <link rel="shortcut icon" href="/">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
-    <script>window.lazyScripts=[]</script>
+  <meta property="og:title" content="完全零基础从0到1掌握Java内存马"/>
 
-    <!-- custom head -->
-    
+  <meta property="og:site_name" content="W01fh4cker&#39;s blog"/>
 
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="W01fh4cker&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
 <meta name="generator" content="Hexo 7.3.0"></head>
 
+
 <body>
-    <div id="loading" class="active"></div>
+<div class="blog">
+  <div class="content">
 
-    <aside id="menu" class="hide" >
-  <div class="inner flex-row-vertical">
-    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-        <i class="icon icon-lg icon-close"></i>
-    </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
-      <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
-        </a>
-        <hgroup class="introduce">
-          <h5 class="nickname">W01fh4cker</h5>
-          <a href="mailto:undefined" class="mail">
-        </hgroup>
-      </div>
-    </div>
-    <div class="scroll-wrap flex-col">
-      <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                Archives
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                Tags
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                Categories
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/w01fh4cker" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-      </ul>
-    </div>
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">W01fh4cker&#39;s blog</a>
+    </h1>
+    <p class="site-description"></p>
   </div>
-</aside>
-
-    <main id="main">
-        <header class="top-header" id="header">
-    <div class="flex-row">
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">完全零基础从0到1掌握Java内存马</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
-        
-    </div>
-</header>
-<header class="content-header post-header">
-
-    <div class="container fade-scale">
-        <h1 class="title">完全零基础从0到1掌握Java内存马</h1>
-        <h5 class="subtitle">
-            
-                <time datetime="2024-12-30T06:04:53.000Z" itemprop="datePublished" class="page-time">
-  2024-12-30
-</time>
-
-
-            
-        </h5>
-    </div>
-
-    
-
-
+  <nav class="site-navigation">
+    <ul>
+      
+    </ul>
+  </nav>
 </header>
 
+    <main class="site-main posts-loop">
+    <article>
 
-<div class="container body-wrap">
+  
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E4%BA%8C%E3%80%81%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、前置知识</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-Servlet%E5%AE%B9%E5%99%A8%E4%B8%8EEngine%E3%80%81Host%E3%80%81Context%E5%92%8CWrapper"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 Servlet容器与Engine、Host、Context和Wrapper</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84servlet"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 编写一个简单的servlet</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-%E4%BB%8E%E4%BB%A3%E7%A0%81%E5%B1%82%E9%9D%A2%E7%9C%8Bservlet%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E8%A3%85%E8%BD%BD%E6%B5%81%E7%A8%8B"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2.3 从代码层面看servlet初始化与装载流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3-1-servlet%E5%88%9D%E5%A7%8B%E5%8C%96%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">2.3.1 servlet初始化流程分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-3-2-servlet%E8%A3%85%E8%BD%BD%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">2.3.2 servlet装载流程分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-4-Filter%E5%AE%B9%E5%99%A8%E4%B8%8EFilterDefs%E3%80%81FilterConfigs%E3%80%81FilterMaps%E3%80%81FilterChain"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">2.4 Filter容器与FilterDefs、FilterConfigs、FilterMaps、FilterChain</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-5-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Filter"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">2.5 编写一个简单的Filter</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-6-%E4%BB%8E%E4%BB%A3%E7%A0%81%E5%B1%82%E9%9D%A2%E5%88%86%E6%9E%90Filter%E8%BF%90%E8%A1%8C%E7%9A%84%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">2.6 从代码层面分析Filter运行的整体流程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-7-Listener%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">2.7 Listener简单介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-8-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Listener%EF%BC%88ServletRequestListener%EF%BC%89"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">2.8 编写一个简单的Listener（ServletRequestListener）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-9-%E4%BB%8E%E4%BB%A3%E7%A0%81%E5%B1%82%E9%9D%A2%E5%88%86%E6%9E%90Listener%E8%BF%90%E8%A1%8C%E7%9A%84%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">2.9 从代码层面分析Listener运行的整体流程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-10-%E7%AE%80%E5%8D%95%E7%9A%84spring%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">2.10 简单的spring项目搭建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-10-1-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Spring-Controller"><span class="post-toc-number">2.10.1.</span> <span class="post-toc-text">2.10.1 编写一个简单的Spring Controller</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-10-2-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Spring-Interceptor"><span class="post-toc-number">2.10.2.</span> <span class="post-toc-text">2.10.2 编写一个简单的Spring Interceptor</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-10-3-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Spring-WebFlux%E7%9A%84Demo%EF%BC%88%E5%9F%BA%E4%BA%8ENetty%EF%BC%89"><span class="post-toc-number">2.10.3.</span> <span class="post-toc-text">2.10.3 编写一个简单的Spring WebFlux的Demo（基于Netty）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-11-Spring-MVC%E4%BB%8B%E7%BB%8D"><span class="post-toc-number">2.11.</span> <span class="post-toc-text">2.11 Spring MVC介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-11-1-Spring-MVC%E4%B9%9D%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="post-toc-number">2.11.1.</span> <span class="post-toc-text">2.11.1 Spring MVC九大组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-11-2-%E7%AE%80%E5%8D%95%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="post-toc-number">2.11.2.</span> <span class="post-toc-text">2.11.2 简单的源码分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-11-2-1-%E4%B9%9D%E5%A4%A7%E7%BB%84%E4%BB%B6%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="post-toc-number">2.11.2.1.</span> <span class="post-toc-text">2.11.2.1 九大组件的初始化</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-11-2-2-url%E5%92%8CController%E7%9A%84%E5%85%B3%E7%B3%BB%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="post-toc-number">2.11.2.2.</span> <span class="post-toc-text">2.11.2.2 url和Controller的关系的建立</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-11-2-3-Spring-Interceptor%E5%BC%95%E5%85%A5%E4%B8%8E%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="post-toc-number">2.11.2.3.</span> <span class="post-toc-text">2.11.2.3 Spring Interceptor引入与执行流程分析</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-12-Spring-WebFlux%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BB%A3%E7%A0%81%E8%B0%83%E8%AF%95%E5%88%86%E6%9E%90"><span class="post-toc-number">2.12.</span> <span class="post-toc-text">2.12 Spring WebFlux介绍与代码调试分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-12-1-%E4%BB%80%E4%B9%88%E6%98%AFMono%EF%BC%9F"><span class="post-toc-number">2.12.1.</span> <span class="post-toc-text">2.12.1 什么是Mono？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-12-2-%E4%BB%80%E4%B9%88%E6%98%AFFlux%EF%BC%9F"><span class="post-toc-number">2.12.2.</span> <span class="post-toc-text">2.12.2 什么是Flux？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-12-3-Spring-WebFlux%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="post-toc-number">2.12.3.</span> <span class="post-toc-text">2.12.3 Spring WebFlux启动过程分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-12-4-Spring-WebFlux%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="post-toc-number">2.12.4.</span> <span class="post-toc-text">2.12.4 Spring WebFlux请求处理过程分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-12-5-Spring-WebFlux%E8%BF%87%E6%BB%A4%E5%99%A8WebFilter%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="post-toc-number">2.12.5.</span> <span class="post-toc-text">2.12.5 Spring WebFlux过滤器WebFilter运行过程分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-13-Tomcat-Valve%E4%BB%8B%E7%BB%8D%E4%B8%8E%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><span class="post-toc-number">2.13.</span> <span class="post-toc-text">2.13 Tomcat Valve介绍与运行过程分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-13-1-Valve%E4%B8%8EPipeline"><span class="post-toc-number">2.13.1.</span> <span class="post-toc-text">2.13.1 Valve与Pipeline</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-13-2-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95Tomcat-Valve%E7%9A%84demo"><span class="post-toc-number">2.13.2.</span> <span class="post-toc-text">2.13.2 编写一个简单Tomcat Valve的demo</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-13-3-Tomcat-Valve%E6%89%93%E5%85%A5%E5%86%85%E5%AD%98%E9%A9%AC%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="post-toc-number">2.13.3.</span> <span class="post-toc-text">2.13.3 Tomcat Valve打入内存马思路分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-14-Tomcat-Upgrade%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%89%93%E5%85%A5%E5%86%85%E5%AD%98%E9%A9%AC%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="post-toc-number">2.14.</span> <span class="post-toc-text">2.14 Tomcat Upgrade介绍与打入内存马思路分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-14-1-%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Tomcat-Upgrade%E7%9A%84demo"><span class="post-toc-number">2.14.1.</span> <span class="post-toc-text">2.14.1 编写一个简单的Tomcat Upgrade的demo</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-14-1-1-%E5%88%A9%E7%94%A8SpringBoot%E6%90%AD%E5%BB%BA"><span class="post-toc-number">2.14.1.1.</span> <span class="post-toc-text">2.14.1.1 利用SpringBoot搭建</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-14-1-2-%E5%88%A9%E7%94%A8Tomcat%E6%90%AD%E5%BB%BA"><span class="post-toc-number">2.14.1.2.</span> <span class="post-toc-text">2.14.1.2 利用Tomcat搭建</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-14-2-Tomcat-Upgrade%E5%86%85%E5%AD%98%E9%A9%AC%E4%BB%8B%E7%BB%8D%E4%B8%8E%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81%E8%B0%83%E8%AF%95%E5%88%86%E6%9E%90"><span class="post-toc-number">2.14.2.</span> <span class="post-toc-text">2.14.2 Tomcat Upgrade内存马介绍与相关代码调试分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-15-Tomcat-Executor%E5%86%85%E5%AD%98%E9%A9%AC%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%89%93%E5%85%A5%E5%86%85%E5%AD%98%E9%A9%AC%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="post-toc-number">2.15.</span> <span class="post-toc-text">2.15 Tomcat Executor内存马介绍与打入内存马思路分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-15-1"><span class="post-toc-number">2.15.1.</span> <span class="post-toc-text">2.15.1</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-15-2-Tomcat-Executor%E5%86%85%E5%AD%98%E9%A9%AC%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BB%A3%E7%A0%81%E8%B0%83%E8%AF%95%E5%88%86%E6%9E%90"><span class="post-toc-number">2.15.2.</span> <span class="post-toc-text">2.15.2 Tomcat Executor内存马介绍与代码调试分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-15-2-1-Endpoint%E4%BA%94%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="post-toc-number">2.15.2.1.</span> <span class="post-toc-text">2.15.2.1 Endpoint五大组件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-15-2-2-Endpoint%E5%88%86%E7%B1%BB"><span class="post-toc-number">2.15.2.2.</span> <span class="post-toc-text">2.15.2.2 Endpoint分类</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-15-2-3-Executor%E7%9B%B8%E5%85%B3%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="post-toc-number">2.15.2.3.</span> <span class="post-toc-text">2.15.2.3 Executor相关代码分析</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E4%B8%89%E3%80%81%E4%BC%A0%E7%BB%9FWeb%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、传统Web型内存马</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-Servlet%E5%86%85%E5%AD%98%E9%A9%AC"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1 Servlet内存马</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-1-%E7%AE%80%E5%8D%95%E7%9A%84servlet%E5%86%85%E5%AD%98%E9%A9%ACdemo%E7%BC%96%E5%86%99"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">3.1.1 简单的servlet内存马demo编写</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-2-servlet%E5%86%85%E5%AD%98%E9%A9%ACdemo%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">3.1.2 servlet内存马demo代码分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-3-%E5%85%B3%E4%BA%8EStandardContext%E3%80%81ApplicationContext%E3%80%81ServletContext%E7%9A%84%E7%90%86%E8%A7%A3"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">3.1.3 关于StandardContext、ApplicationContext、ServletContext的理解</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2-Filter%E5%86%85%E5%AD%98%E9%A9%AC"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.2 Filter内存马</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-1-%E7%AE%80%E5%8D%95%E7%9A%84filter%E5%86%85%E5%AD%98%E9%A9%ACdemo%E7%BC%96%E5%86%99"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">3.2.1 简单的filter内存马demo编写</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-2-servlet%E5%86%85%E5%AD%98%E9%A9%ACdemo%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">3.2.2 servlet内存马demo代码分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-3-tomcat6%E4%B8%8Bfilter%E5%86%85%E5%AD%98%E9%A9%AC%E7%9A%84%E7%BC%96%E5%86%99"><span class="post-toc-number">3.2.3.</span> <span class="post-toc-text">3.2.3 tomcat6下filter内存马的编写</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3-Listener%E5%86%85%E5%AD%98%E9%A9%AC"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.3 Listener内存马</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-1-%E7%AE%80%E5%8D%95%E7%9A%84Listener%E5%86%85%E5%AD%98%E9%A9%ACdemo%E7%BC%96%E5%86%99"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">3.3.1 简单的Listener内存马demo编写</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-2-Listener%E5%86%85%E5%AD%98%E9%A9%ACdemo%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="post-toc-number">3.3.2.</span> <span class="post-toc-text">3.3.2 Listener内存马demo代码分析</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%9B%9B%E3%80%81Spring-MVC%E6%A1%86%E6%9E%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="post-toc-number">4.</span> <span class="post-toc-text">四、Spring MVC框架型内存马</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-1-Spring-Controller%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">4.1 Spring Controller型内存马</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-1-%E7%AE%80%E5%8D%95%E7%9A%84Spring-Controller%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%ACdemo%E7%BC%96%E5%86%99"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">4.1.1 简单的Spring Controller型内存马demo编写</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-2-Spring-Controller%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%ACdemo%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">4.1.2 Spring Controller型内存马demo代码分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-2-Spring-Interceptor%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">4.2 Spring Interceptor型内存马</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-3-Spring-WebFlux%E5%86%85%E5%AD%98%E9%A9%AC"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">4.3 Spring WebFlux内存马</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-1-%E7%AE%80%E5%8D%95%E7%9A%84Spring-WebFlux%E5%86%85%E5%AD%98%E9%A9%ACdemo%E7%BC%96%E5%86%99"><span class="post-toc-number">4.3.1.</span> <span class="post-toc-text">4.3.1 简单的Spring WebFlux内存马demo编写</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-2-Spring-WebFlux%E5%86%85%E5%AD%98%E9%A9%ACdemo%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90"><span class="post-toc-number">4.3.2.</span> <span class="post-toc-text">4.3.2 Spring WebFlux内存马demo代码分析</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E4%BA%94%E3%80%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="post-toc-number">5.</span> <span class="post-toc-text">五、中间件型内存马</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-1-Tomcat-Valve%E5%9E%8B%E5%86%85%E5%AD%98%E9%A9%AC"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">5.1 Tomcat Valve型内存马</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-2-Tomcat-Upgrade%E5%86%85%E5%AD%98%E9%A9%AC"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">5.2 Tomcat Upgrade内存马</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-3-Tomcat-Executor%E5%86%85%E5%AD%98%E9%A9%AC"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">5.3 Tomcat Executor内存马</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%85%AD%E3%80%81%E8%87%B4%E8%B0%A2"><span class="post-toc-number">6.</span> <span class="post-toc-text">六、致谢</span></a></li></ol>
-        </nav>
-    </aside>
+    <h3 class="article-title"><span>完全零基础从0到1掌握Java内存马</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2024/12/30/LearnJavaMemshellFromZero/" rel="bookmark">
+        <time class="entry-date published" datetime="2024-12-30T06:04:53.000Z">
+          2024-12-30
+        </time>
+      </a>
+    </span>
+  </div>
 
 
-<article id="post-LearnJavaMemshellFromZero"
-  class="post-article article-type-post fade" itemprop="blogPost">
+  
 
-    <div class="post-card">
-        <h1 class="post-card-title">完全零基础从0到1掌握Java内存马</h1>
-        <div class="post-meta">
-            <time class="post-time" title="2024-12-30 14:04:53" datetime="2024-12-30T06:04:53.000Z"  itemprop="datePublished">2024-12-30</time>
-
-            
-
-
-            
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
-
-        </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
-            <figure class="image-bubble">
+  <div class="article-content">
+    <div class="entry">
+      
+        <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="https://socialify.git.ci/W01fh4cker/LearnJavaMemshellFromZero/image?description=1&descriptionEditable=%E3%80%90%E5%8E%9F%E5%88%9B%E3%80%91%E5%AE%8C%E5%85%A8%E9%9B%B6%E5%9F%BA%E7%A1%80%E4%BB%8E0%E5%88%B01%E6%8E%8C%E6%8F%A1Java%E5%86%85%E5%AD%98%E9%A9%AC&forks=1&issues=1&language=1&logo=https%3A%2F%2Fs2.loli.net%2F2022%2F06%2F25%2FgUAh2V5CiD96y8G.jpg&owner=1&pattern=Brick%20Wall&pulls=1&stargazers=1" alt="" title="">
@@ -3378,266 +3038,56 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">https://zhuanlan.zhihu.com/p/634697114</span><br><span class="line">https://blog.csdn.net/shelter1234567/article/details/133435490</span><br><span class="line">https://xz.aliyun.com/t/12494</span><br><span class="line">https://xz.aliyun.com/t/7348</span><br><span class="line">https://xz.aliyun.com/t/7388</span><br><span class="line">https://longlone.top/安全/java/java安全/内存马/Tomcat-Servlet型/</span><br><span class="line">https://chenlvtang.top/2022/06/22/Tomcat之Filter内存马/</span><br><span class="line">https://drun1baby.top/2022/08/22/Java内存马系列-03-Tomcat-之-Filter-型内存马/</span><br><span class="line">https://www.jb51.net/article/167204.htm</span><br><span class="line">https://f4de-bak.github.io/pages/10060c/</span><br><span class="line">https://tyaoo.github.io/2021/12/06/Tomcat内存马/</span><br><span class="line">https://github.com/bitterzzZZ/MemoryShellLearn/tree/main</span><br><span class="line">https://mp.weixin.qq.com/s/BrbkTiCuX4lNEir3y24lew</span><br><span class="line">https://yzddmr6.com/posts/tomcat-context/</span><br><span class="line">https://mp.weixin.qq.com/s/x4pxmeqC1DvRi9AdxZ-0Lw</span><br><span class="line">https://gv7.me/articles/2020/kill-java-web-filter-memshell/</span><br><span class="line">https://mp.weixin.qq.com/s/eI-50-_W89eN8tsKi-5j4g</span><br><span class="line">https://xz.aliyun.com/t/9914</span><br><span class="line">https://goodapple.top/archives/1355</span><br><span class="line">https://su18.org/post/memory-shell/</span><br><span class="line">https://nosec.org/home/detail/5049.html</span><br><span class="line">https://su18.org/post/memory-shell/#控制器-拦截器-管道</span><br><span class="line">https://su18.org/post/memory-shell-2/#延伸线程型内存马</span><br><span class="line">https://javasec.org/</span><br><span class="line">https://www.cnblogs.com/javammc/p/15612780.html</span><br><span class="line">https://landgrey.me/blog/12/</span><br><span class="line">https://landgrey.me/blog/19/</span><br><span class="line">https://www.cnblogs.com/zpchcbd/p/15545773.html</span><br><span class="line">https://xz.aliyun.com/t/11039</span><br><span class="line">https://github.com/LandGrey/webshell-detect-bypass/blob/master/docs/inject-interceptor-hide-webshell/inject-interceptor-hide-webshell.md</span><br><span class="line">https://www.cnblogs.com/bitterz/p/14859766.html</span><br><span class="line">https://www.javasec.org/javaweb/MemoryShell/</span><br><span class="line">https://www.yongsheng.site/2022/06/18/内存马(二)/</span><br><span class="line">https://segmentfault.com/a/1190000040939157</span><br><span class="line">https://developer.aliyun.com/article/925400</span><br><span class="line">https://su18.org/post/memory-shell/</span><br><span class="line">https://forum.butian.net/share/2593</span><br><span class="line">https://xz.aliyun.com/t/12952</span><br><span class="line">https://www.0kai0.cn/?p=321</span><br><span class="line">https://xz.aliyun.com/t/11331</span><br><span class="line">https://gv7.me/articles/2022/the-spring-cloud-gateway-inject-memshell-through-spel-expressions/</span><br><span class="line">https://cloud.tencent.com/developer/article/1888001</span><br><span class="line">https://blog.csdn.net/qq_41048524/article/details/131534948</span><br><span class="line">https://blog.csdn.net/weixin_45505313/article/details/103257933</span><br><span class="line">https://xz.aliyun.com/t/10372</span><br><span class="line">https://www.anquanke.com/post/id/224698</span><br><span class="line">https://forum.butian.net/share/2436</span><br><span class="line">http://124.223.185.138/index.php/archives/28.html</span><br><span class="line">https://longlone.top/安全/java/java安全/内存马/Tomcat-Valve型/</span><br><span class="line">https://su18.org/post/memory-shell/#tomcat-valve-内存马</span><br><span class="line">https://www.freebuf.com/articles/web/344321.html</span><br><span class="line">https://nosec.org/home/detail/5077.html</span><br><span class="line">https://github.com/veo/wsMemShell</span><br><span class="line">https://veo.pub/2022/memshell/</span><br><span class="line">https://tttang.com/archive/1673/</span><br><span class="line">https://www.viewofthai.link/2022/07/20/value型内存马/</span><br><span class="line">https://jiwo.org/ken/detail.php?id=3147</span><br><span class="line">https://paoka1.top/2023/04/24/Tomcat-Agent-型内存马/</span><br><span class="line">https://www.anquanke.com/post/id/225870</span><br><span class="line">https://xz.aliyun.com/t/11988</span><br><span class="line">https://www.cnblogs.com/piaomiaohongchen/p/14992056.html</span><br><span class="line">https://blog.csdn.net/text2204/article/details/129307931</span><br><span class="line">https://xz.aliyun.com/t/13024</span><br><span class="line">https://www.cnblogs.com/coldridgeValley/p/5816414.html</span><br><span class="line">http://wjlshare.com/archives/1541</span><br><span class="line">https://cloud.tencent.com/developer/article/2278400</span><br><span class="line">https://www.freebuf.com/vuls/345119.html</span><br><span class="line">https://tttang.com/archive/1709/</span><br><span class="line">https://xz.aliyun.com/t/11593</span><br><span class="line">https://xz.aliyun.com/t/11613</span><br><span class="line">https://p4d0rn.gitbook.io/java/memory-shell/tomcat-middlewares/executor</span><br><span class="line">https://p4d0rn.gitbook.io/java/memory-shell/tomcat-middlewares/upgrade</span><br><span class="line">https://github.com/Gh0stF/trojan-eye/tree/master</span><br><span class="line">https://blog.nowcoder.net/n/0c4b545949344aa0b313f22df9ac2c09</span><br><span class="line">https://xz.aliyun.com/t/12949</span><br><span class="line">https://paoka1.top/2023/04/21/Tomcat-WebSocket-型内存马/</span><br><span class="line">https://mp.weixin.qq.com/s/cU2s8D2BcJHTc7IuXO-1UQ</span><br></pre></td></tr></table></figure>
 
 
-        </div>
-
-        <blockquote class="post-copyright">
-    
-    <div class="content">
-        
-<span class="post-time">
-    Last updated: <time datetime="2024-12-30T06:09:18.942Z" itemprop="dateUpdated">2024-12-30 14:09:18</time>
-</span><br>
-
-
-        
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2024/12/30/LearnJavaMemshellFromZero/" target="_blank" rel="external">https://w01fh4cker.github.io/2024/12/30/LearnJavaMemshellFromZero/</a>
-        
+      
     </div>
-    
-    <footer>
-        <a href="https://w01fh4cker.github.io">
-            <img src="/img/avatar.jpg" alt="W01fh4cker">
-            W01fh4cker
-        </a>
-    </footer>
-</blockquote>
 
-        
+  </div>
 
+  <div class="article-footer">
+    <div class="article-meta pull-left">
 
-        <div class="post-footer">
-            
-	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Memshell/" rel="tag">Memshell</a></li></ul>
-
-
-            
-<div class="page-share-wrap">
     
 
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://w01fh4cker.github.io/2024/12/30/LearnJavaMemshellFromZero/&title=《完全零基础从0到1掌握Java内存马》 — W01fh4cker's blog&pic=https://w01fh4cker.github.io/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://w01fh4cker.github.io/2024/12/30/LearnJavaMemshellFromZero/&title=《完全零基础从0到1掌握Java内存马》 — W01fh4cker's blog&source=
-                
-                    
-                    
-                
-..." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://w01fh4cker.github.io/2024/12/30/LearnJavaMemshellFromZero/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《完全零基础从0到1掌握Java内存马》 — W01fh4cker's blog&url=https://w01fh4cker.github.io/2024/12/30/LearnJavaMemshellFromZero/&via=https://w01fh4cker.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://w01fh4cker.github.io/2024/12/30/LearnJavaMemshellFromZero/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
+    
+    
 
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/Java/">Java</a><a href="/tags/Memshell/">Memshell</a>
+    </span>
+    
 
-
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
-
-
-
-        </div>
     </div>
 
     
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </div>
 </article>
 
+  
 
 
-</div>
-
-        <footer class="footer">
-    <div class="top">
-        
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
 
 
-        <p>
-            
-                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>This blog is licensed under a <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
-        </p>
-    </div>
-    <div class="bottom">
-        <p><span>W01fh4cker &copy; 2015 - 2024</span>
-            <span>
-                
-                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
-            </span>
-        </p>
-    </div>
-</footer>
+
+
+
+
 
     </main>
-    <div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://w01fh4cker.github.io/2024/12/30/LearnJavaMemshellFromZero/&title=《完全零基础从0到1掌握Java内存马》 — W01fh4cker's blog&pic=https://w01fh4cker.github.io/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://w01fh4cker.github.io/2024/12/30/LearnJavaMemshellFromZero/&title=《完全零基础从0到1掌握Java内存马》 — W01fh4cker's blog&source=
-                
-                    
-                    
-                
-..." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://w01fh4cker.github.io/2024/12/30/LearnJavaMemshellFromZero/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《完全零基础从0到1掌握Java内存马》 — W01fh4cker's blog&url=https://w01fh4cker.github.io/2024/12/30/LearnJavaMemshellFromZero/&via=https://w01fh4cker.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://w01fh4cker.github.io/2024/12/30/LearnJavaMemshellFromZero/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3aQY5aMRAEUO5/6WSbaARUdduESO+vEAPGzwvbU92PR/z8+uP5+c7P95+9zsd5PdrhBw8PD28x9WQSr8dJliMZM//u6wXCw8PDu8dLfuDZ52dTyb+bHxJ4eHh438x7sx2X99vZhR4PDw/vf+G1F/H2dTsaHh4e3r/ibS6+syMhj4PzhcDDw8P7DC+f3Pe8vlLfw8PDw1tX1ZOifrtBv37/7IOHh4d3g5dvuPmFexYxJE0Js8AXDw8P7ywvPwA27E2Ym5TBns4ZDw8P74O8UxfopHj2Osyty11tPo2Hh4dX8tqhZ7A8nmgXa1jfw8PDwzvEawv5eQzRHhjtAr35LTw8PLyjvLa5ah/jbsapW6/w8PDwLvA2l+B2W58dPPlhcyCYwMPDw4vvnLPrdTu5tpngET9vzj08PDy8o7y2bH/7AJjFFm/Gx8PDwzvKa4tem6ls2hSG12s8PDy8C7wZqW3MmpW42uOqWHU8PDy8BS8PGtpLbTvR9kiIvoWHh4d3gbcPCPKoN78Q58sUHVp4eHh413htCJt8vm0FaMtvwzAXDw8Pb83Lt+m2NJWHDm2BLZ8hHh4e3j1eXqyaxbVtBLxpXMDDw8P7DC/foNuwoI0t8lCjaOrCw8PD+wjvbJEs3+I3C/qmDIaHh4d3iNe2RrWNVu1E87ghio/x8PDwLvPyBqkD7VBxbjALTfDw8PBu89ot/mxbVbsExS/i4eHhHeVtSlx5Q8CpxqlkWf/6Kx4eHt4FXrv5bspUs9arvMD22Dx4eHh4JS85DNrt+96xkRfb8PDw8G7zZpWjPG7I44lNGIGHh4f3nbwWkMcc7cJF38LDw8P7Al5+YOTlsbapq4hr8fDw8K7x9iWrfOOela+GxwkeHh7eBd7+H/5T7Jb0OPXg4eHhpbzfRwiSl96uoq8AAAAASUVORK5CYII=" alt="微信分享二维码">
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2024 W01fh4cker
+    
+  </p>
+</footer>
+    
+    
+  </div>
 </div>
-
-
-
-
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
-
-
-</script>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
-
-
-
-
-
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-<script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '死鬼去哪里了！';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '(つェ⊂)咦!又好了!';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
-    });
-})();
-</script>
-
-
-
 </body>
 </html>
